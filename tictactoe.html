@@ -24,9 +24,9 @@
 			//all possible winning Tic-Tac-Toe combinations
 			winningCombinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 			//give values to painted anc content arrays
-			for(var 1 = 0; 1 <= 8; 1++){
-				painted[1] = false;
-				content[1] = '';
+			for(var l = 0; l <= 8; l++){
+				painted[l] = false;
+				content[l] = '';
 			}
 		}
 
@@ -87,6 +87,7 @@
 			}
 		}
 
+		//use the winning combinations array and newly filled content array to check if there is a winning combination
 		function checkForWinners(symbol){
 			for(var a = 0; a < winningCombinations.length; a++){
 				if(content[winningCombinations[a][0]]==symbol&&content[winningCombinations[a][1]]==symbol&&content[winningCombinations[a][2]]==symbol){
@@ -96,6 +97,7 @@
 			}
 		}
 
+		//ask if user wants to play again, if so reload page
 		function playAgain(){
 			y=confirm("PLAY AGAIN?");
 			if(y==true){
