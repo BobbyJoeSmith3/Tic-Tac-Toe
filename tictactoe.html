@@ -28,6 +28,63 @@
 				painted[1] = false;
 				content[1] = '';
 			}
+		}
+
+		//Game Methods
+		function canvasClicked(canvasNumber){
+			//creates the string we need to use to identify canvasses down in the body
+			theCanvas = "canvas" + canvasNumber;
+			//variable c will hold the canvas we want by dynamically accessing parts of the html body
+			c = document.getElementById(theCanvas);
+			//gives the context of the canvas
+			cxt = c.getContext("2d");
+
+			//if the canvas isn't occupied, draw the appropriate symbol
+			if(painted[canvasNumber-1] == false){
+				//paints an 'X' for all even numbered turns
+				if(turn%2==0){
+					//begins drawing
+					cxt.beginPath();
+					//moves imaginary cursor to specific location in canvas
+					cxt.moveTo(10,10);
+					//draws the line
+					cxt.lineTo(40,40);
+					cxt.moveTo(40,10);
+					cxt.lineTo(10,40);
+					//actually draws the lines
+					cxt.stroke();
+					//puts away cursor
+					cxt.closePath();
+					//adds an 'X' to the content array
+					content[canvasNumber-1] = 'X';
+				} else {
+					//paints an 'O' for all odd numbered turns
+					cxt.beginPath();
+					cxt.arc(25,25,20,0,Math.PI*2,true);
+					cxt.stroke();
+					cxt.closePath();
+					//adds an 'O' to the content array
+					content[canvasNumber-1] = 'O';
+				}
+
+				//increments the turn value
+				turn++;
+				//indicates that the particular canvas is filled
+				painted[canvasNumber-1] = true;
+				//increments the value for the number of canvases filled
+				squaresFilled++;
+				//runs the checkForWinners function and passes it the content of the current canvas
+				checkForWinners(content[canvasNumber-1]);
+
+				//If all squares are filled, ends game and restarts the game
+				if (squaresFilled==9){
+					alert("The Game Is Over! Womp womp...");
+					location.reload(true);
+				}
+			} else {
+				//if the canvas isn't empty, send an alert message to user that the space is already occupied
+				alert("THAT SPACE IS ALREADY OCCUPIED...WITH YOUR HEART!");
+			}
 		}	
 
 		</script>
