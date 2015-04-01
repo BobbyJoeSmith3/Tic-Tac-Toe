@@ -13,7 +13,22 @@
 		var cxt;
 		var squaresFilled = 0;
 		var w;
-		var y;	
+		var y;
+
+		//Instantiate Arrays
+		window.onload=function(){
+			//painted array checks if canvas contains mark
+			painted = new Array();
+			//content array tells us what the canvas contains
+			content = new Array();
+			//all possible winning Tic-Tac-Toe combinations
+			winningCombinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+			//give values to painted anc content arrays
+			for(var 1 = 0; 1 <= 8; 1++){
+				painted[1] = false;
+				content[1] = '';
+			}
+		}	
 
 		</script>
 	</head>
